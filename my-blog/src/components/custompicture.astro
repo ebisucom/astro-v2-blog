@@ -1,0 +1,26 @@
+---
+import { Picture } from '@astrojs/image/components';
+import { getPlaiceholder } from 'plaiceholder';
+
+const props = Astro.props;
+
+const { src: imgsrc } = props;
+const {
+	img: { width, height },
+} = await getPlaiceholder(imgsrc);
+
+const pictureDefault = {
+	widths: [640, 750, 828, 1080, 1200, 1920],
+	sizes: '(min-width: 720px) 720px, 100vw',
+	formats: ['webp', 'jpeg'],
+};
+---
+
+<Picture
+	alt=""
+	aspectRatio={`${width}:${height}`}
+	width={width}
+	height={height}
+	{...pictureDefault}
+	{...props}
+/>

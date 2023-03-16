@@ -1,0 +1,86 @@
+---
+import Layout from '@layouts/layout.astro';
+import Custompicture from '@components/custompicture.astro';
+import Pagination from '@components/pagination.astro';
+
+import { getCollection } from 'astro:content';
+
+import { format, formatISO, compareDesc } from 'date-fns';
+import { categories } from '@lib/constants';
+
+import 'github-markdown-css/github-markdown-light.css';
+
+export async function getStaticPaths({}) {
+	const blogPosts = await getCollection('blog');
+	const sortedBlogPosts = blogPosts.sort((a, b) =>
+		compareDesc(a.data.pubDate, b.data.pubDate)
+	);
+	const numberOfPosts = blogPosts.length;
+
+	return sortedBlogPosts.map((post) => {
+		const { slug } = post;
+		const currentPage = sortedBlogPosts.findIndex((post) => post.slug === slug);
+
+		// 古い記事へ → インデックス増
+		const prev =
+			currentPage + 1 >= numberOfPosts
+				? {}
+				: {
+						prevTitle: sortedBlogPosts[currentPage + 1].data.title,
+						prev: `/blog/${sortedBlogPosts[currentPage + 1].slug}`,
+				  };
+
+		// 新しい記事へ → インデックス減
+		const next =
+			currentPage - 1 < 0
+				? {}
+				: {
+						nextTitle: sortedBlogPosts[currentPage - 1].data.title,
+						next: `/blog/${sortedBlogPosts[currentPage - 1].slug}`,
+				  };
+
+		return { params: { slug }, props: { post, url: { ...prev, ...next } } };
+	});
+}
+
+const { post, url } = Astro.props;
+const { Content } = await post.render();
+
+const {
+	data: { title, pubDate, image, category, description },
+} = post;
+const pubDateISO = formatISO(pubDate);
+const pubDateJA = format(pubDate, 'yyyy年MM月dd日');
+---
+
+<Layout pageTitle={title} description={description} pageImg={image}>
+	<article>
+		<Custompicture src={image} alt="" />
+		<h1>{title}</h1>
+
+		<div class="flex-spacebetween">
+			<time datetime={pubDateISO}>{pubDateJA}</time>
+
+			<div class="flex">
+				{
+					category.map((categorySlug) => {
+						const categoryName = categories.find(
+							(cat) => cat.categorySlug === categorySlug
+						).categoryName;
+						return (
+							<a rel="prefetch" href={`/blog/category/${categorySlug}`}>
+								{categoryName}
+							</a>
+						);
+					})
+				}
+			</div>
+		</div>
+
+		<div class="markdown-body large-space">
+			<Content components={{ img: Custompicture }} />
+		</div>
+
+		<Pagination {...url} />
+	</article>
+</Layout>

@@ -1,0 +1,96 @@
+@layer layout {
+	/* スペーシング（間隔） */
+	:where(body, .container, header, footer, article) > * + * {
+		margin-block-start: 1em;
+	}
+
+	:where(main) > * + * {
+		margin-block-start: 2.5em;
+	}
+
+	/* レイアウト： 両端揃え */
+	.flex-spacebetween {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		flex-wrap: wrap;
+		gap: 1em;
+	}
+	.flex-spacebetween > :last-child {
+		margin-left: auto;
+	}
+
+	/* レイアウト： 横並び */
+	.flex {
+		display: flex;
+		gap: 1em;
+	}
+
+	/* レイアウト： ２段組み */
+	.grid {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		gap: 1.25em;
+	}
+
+	/* カード */
+	.card a > * + * {
+		margin-block-start: 0.5em;
+	}
+
+	.card img {
+		aspect-ratio: 2/1;
+		object-fit: cover;
+	}
+
+	.card h2 {
+		font-size: 1em;
+		font-weight: normal;
+	}
+
+	/* ヘッダー、フッター */
+	header,
+	footer {
+		padding-block: 1.5em;
+	}
+
+	header ul {
+		display: flex;
+		gap: 1em;
+	}
+
+	footer ul {
+		display: flex;
+		gap: 1em;
+		justify-content: center;
+	}
+
+	/* ナビゲーションバー */
+	nav {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		flex-wrap: wrap;
+		gap: 1em;
+	}
+
+	nav > a:first-child {
+		display: flex;
+		gap: 0.5em;
+		font-size: larger;
+		font-weight: bold;
+	}
+
+	/* メインコンテンツ */
+	main {
+		min-height: 60vh;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		text-align: center;
+	}
+
+	main article {
+		text-align: left;
+	}
+}

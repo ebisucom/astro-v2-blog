@@ -1,0 +1,32 @@
+---
+import { siteMeta } from '@lib/constants';
+const { siteTitle, siteDesc, siteLocale, siteType, siteIcon, siteImg } =
+	siteMeta;
+
+const { pageTitle, description = siteDesc, pageImg = siteImg } = Astro.props;
+
+const title = pageTitle ? `${pageTitle} | ${siteTitle}` : siteTitle;
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const socialImageURL = new URL(pageImg, Astro.site);
+---
+
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width" />
+<meta name="generator" content={Astro.generator} />
+
+<title>
+	{title}
+</title>
+<meta property="og:title" content={title} />
+<meta name="description" content={description} />
+<meta property="og:description" content={description} />
+<link rel="canonical" href={canonicalURL} />
+<meta property="og:url" content={canonicalURL} />
+<meta property="og:site_name" content={siteTitle} />
+<meta property="og:type" content={siteType} />
+<meta property="og:locale" content={siteLocale} />
+<link rel="icon" href={siteIcon} />
+<link rel="apple-touch-icon" href={siteIcon} />
+<meta property="og:image" content={socialImageURL} />
+<meta name="twitter:card" content="summary_large_image" />

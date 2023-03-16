@@ -1,0 +1,39 @@
+{
+  "name": "my-blog-tinacms",
+  "type": "module",
+  "description": "「Astro v2とTinaCMSでシンプルに作るブログサイト」のChapter 6で完成させるプロジェクトデータです",
+  "homepage": "https://github.com/ebisucom/astro-v2-blog",
+  "author": "エビスコム - EBISUCOM (https://ebisu.com/)",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "tinacms dev -c \"astro dev\"",
+    "start": "tinacms dev -c \"astro dev\"",
+    "build": "tinacms build && astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "@astrojs/image": "^0.16.0",
+    "@astrojs/mdx": "^0.18.0",
+    "@astrojs/prefetch": "^0.2.0",
+    "@astrojs/rss": "^2.2.0",
+    "@astrojs/sitemap": "^1.2.0",
+    "@tinacms/cli": "^1.3.2",
+    "astro": "^2.1.2",
+    "astro-icon": "^0.8.0",
+    "date-fns": "^2.29.3",
+    "date-fns-tz": "^2.0.0",
+    "github-markdown-css": "^5.2.0",
+    "hastscript": "^7.2.0",
+    "plaiceholder": "^2.5.0",
+    "rehype-parse": "^8.0.4",
+    "rehype-stringify": "^9.0.3",
+    "sharp": "^0.31.3",
+    "tinacms": "^1.3.2",
+    "unified": "^10.1.2",
+    "unist-util-visit": "^4.1.2",
+    "zenn-content-css": "^0.1.141",
+    "zenn-markdown-html": "^0.1.141"
+  }
+}

@@ -1,0 +1,24 @@
+---
+const { prev, next, prevTitle = '前へ', nextTitle = '次へ' } = Astro.props;
+---
+
+<div class="flex-spacebetween">
+	{
+		prev ? (
+			<a rel="prefetch" href={prev}>
+				← {prevTitle}
+			</a>
+		) : (
+			<span />
+		)
+	}
+	{
+		next ? (
+			<a rel="prefetch" href={next}>
+				{nextTitle} →
+			</a>
+		) : (
+			<span />
+		)
+	}
+</div>

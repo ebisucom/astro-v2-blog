@@ -1,0 +1,27 @@
+---
+import '@styles/config.css';
+import '@styles/default.css';
+import '@styles/layout.css';
+
+import Header from '@components/header.astro';
+import Footer from '@components/footer.astro';
+import Container from '@components/container.astro';
+import Meta from '@components/meta.astro';
+
+const props = Astro.props;
+---
+
+<html lang="ja">
+	<head>
+		<Meta {...props} />
+	</head>
+	<body>
+		<Container>
+			<Header />
+			<main>
+				<slot />
+			</main>
+			<Footer />
+		</Container>
+	</body>
+</html>

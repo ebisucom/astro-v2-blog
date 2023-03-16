@@ -1,0 +1,12 @@
+---
+import Custompicture from '@components/custompicture.astro';
+
+const { url, src, alt = '', title } = Astro.props;
+---
+
+<article class="card">
+	<a rel="prefetch" href={url}>
+		<Custompicture src={src} alt={alt} />
+		<h2>{title}</h2>
+	</a>
+</article>

@@ -1,0 +1,7 @@
+/* カスケードレイヤー */
+@layer default, layout, theme;
+
+/* 上書き用のスタイル: 上下のスペースを大きくする */
+body .large-space {
+	margin-block: 2.5em;
+}

@@ -1,0 +1,56 @@
+---
+import Layout from '@layouts/layout.astro';
+import Card from '@components/card.astro';
+import Pagination from '@components/pagination.astro';
+
+import { getCollection } from 'astro:content';
+import { compareDesc } from 'date-fns';
+
+import { categories } from '@lib/constants';
+
+export async function getStaticPaths({ paginate }) {
+	const blogPosts = await getCollection('blog');
+	const sortedBlogPosts = blogPosts.sort((a, b) =>
+		compareDesc(a.data.pubDate, b.data.pubDate)
+	);
+	return categories.map((category) => {
+		const { categorySlug, categoryName } = category;
+
+		const filteredPosts = sortedBlogPosts.filter((post) => {
+			return post.data.category.includes(categorySlug);
+		});
+
+		return paginate(filteredPosts, {
+			params: { categorySlug },
+			props: { categoryName },
+			pageSize: 6,
+		});
+	});
+}
+
+const {
+	page: {
+		data,
+		url: { prev, next },
+	},
+	categoryName,
+} = Astro.props;
+---
+
+<Layout pageTitle={categoryName} description={`${categoryName}の記事一覧`}>
+	<h1>{categoryName}</h1>
+
+	<div class="grid">
+		{
+			data.map((post) => {
+				const {
+					slug,
+					data: { image, title },
+				} = post;
+				return <Card url={`/blog/${slug}`} src={image} title={title} />;
+			})
+		}
+	</div>
+
+	<Pagination prev={prev} next={next} />
+</Layout>
