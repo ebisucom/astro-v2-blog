@@ -1,5 +1,7 @@
 # Astro v2とTinaCMSでシンプルに作るブログサイト
 
+![Astro v2とTinaCMSでシンプルに作るブログサイト](https://repository-images.githubusercontent.com/613621041/db11d03e-1138-41ba-be9f-092b3e2a4e69)
+
 **ダウンロードデータ**
 
 本書で作成するブログサイトの完成プロジェクトデータや、制作に必要な各種アセット、記事データなどを収録しています。詳しくは、本書を参照してください。
