@@ -2,17 +2,20 @@
 
 ![Astro v2とTinaCMSでシンプルに作るブログサイト](https://repository-images.githubusercontent.com/613621041/db11d03e-1138-41ba-be9f-092b3e2a4e69)
 
+---
+
+**plaiceholderのバージョンについて[サポートWiki](https://github.com/ebisucom/astro-v2-blog/wiki)に追加しました。 ［2023年8月13日］**
+
+※最新の情報は著者NOTE（ https://ebisu.com/note/ ） や Twitter ( https://twitter.com/ebisucom ) でも出していますので、参考にしてください。
+
+---
+
 **ダウンロードデータ**
 
 本書で作成するブログサイトの完成プロジェクトデータや、制作に必要な各種アセット、記事データなどを収録しています。詳しくは、本書を参照してください。
 
 * [書籍情報](https://ep.ebisu.com/astro-v2-blog/)
 
----
-
-※最新の情報は著者NOTE（ https://ebisu.com/note/ ） や Twitter ( https://twitter.com/ebisucom ) でも出していますので、参考にしてください。
-
----
 
 ## ■ プロジェクトデータ
 
